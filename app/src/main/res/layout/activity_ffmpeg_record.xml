@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:keepScreenOn="true"
+    android:soundEffectsEnabled="false"
+    tools:context="com.camera.video.recorder.RecordActivity">
+
+    <com.camera.video.recorder.FixedRatioCroppedTextureView
+        android:id="@+id/camera_preview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/montserrat_medium"
+        android:gravity="center"
+        android:text="1"
+        android:textColor="@color/colorPrimary"
+        android:textSize="50dp"
+        android:visibility="gone"></TextView>
+
+    <SeekBar
+        android:id="@+id/progress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="7dp"
+        android:progress="0"
+        android:progressDrawable="@drawable/custom_seekbar"
+        android:splitTrack="false"
+        android:thumbTint="@android:color/transparent" />
+
+    <ImageView
+        android:id="@+id/close_compose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/compose_close"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/video_property"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/progress"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/btn_switch_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:soundEffectsEnabled="false">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/flip"
+                android:visibility="visible" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@string/flip"
+                android:textColor="@android:color/white"
+                android:textSize="10sp"></TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="25dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/timer"
+                android:visibility="visible" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@string/timer"
+                android:textColor="@android:color/white"
+                android:textSize="10sp"></TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_flash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="25dp"
+            android:onClick="onClick"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/flash_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/flash_off"
+                android:visibility="visible" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@string/flash"
+                android:textColor="@android:color/white"
+                android:textSize="10sp"></TextView>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/open_gallery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="55dp"
+        android:layout_marginBottom="80dp"
+        android:gravity="center"
+        android:onClick="onClick"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+
+        <com.camera.video.recorder.util.RoundedImageView
+            android:id="@+id/gallery_image"
+            android:layout_width="match_parent"
+            android:scaleType="fitXY"
+            android:layout_height="35dp"></com.camera.video.recorder.util.RoundedImageView>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
+            android:gravity="center"
+            android:text="@string/gallery"
+
+            android:textColor="@android:color/white"
+            android:textSize="10sp"></TextView>
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/btn_resume_or_pause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="70dp"
+        android:layout_weight="1"
+        android:background="@drawable/record_button"
+        android:soundEffectsEnabled="false"
+        android:text="@string/resume" />
+
+    <LinearLayout
+        android:id="@+id/save_delete_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="85dp"
+        android:layout_toRightOf="@+id/btn_resume_or_pause"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/delete_video"
+            android:layout_width="14dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="35dp"
+            android:background="@drawable/reset_video"
+            android:onClick="onClick"
+            android:padding="10dp"></ImageView>
+
+        <ImageView
+            android:id="@+id/save_video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:background="@drawable/save_video"
+            android:onClick="onClick"
+            android:padding="10dp"></ImageView>
+
+    </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/timer_list"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:clipToPadding="false"
+        android:paddingLeft="130dp"
+        android:layout_marginRight="@dimen/_30sdp"
+        android:layout_marginLeft="@dimen/_30sdp"
+        android:paddingRight="130dp"></androidx.recyclerview.widget.RecyclerView>
+
+    <ImageView
+        android:id="@+id/time_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/timer_bottom_indicator"></ImageView>
+</RelativeLayout>
