@@ -16,7 +16,7 @@ These core features use FFmpegFrameRecorder, FFmpegFrameFilter from [JavaCV][1].
 * [VideoRecorder][5]
 
 
-## License
+## License ̰
 
     Copyright 2016 Lei Wang
 
